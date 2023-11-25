@@ -1,0 +1,9 @@
+<library path="cr_sensor_interface">
+    <class name="cr_sensor_interface/CrSensorInterface"
+           type="cr_sensor_interface::CrSensorInterface"
+           base_class_type="hardware_interface::SensorInterface">
+        <description>
+            Hardware Interface for Continuum robot.
+        </description>
+    </class>
+</library>

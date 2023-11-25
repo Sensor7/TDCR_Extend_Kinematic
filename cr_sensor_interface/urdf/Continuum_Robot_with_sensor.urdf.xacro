@@ -1,0 +1,20 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Tendon_drive_CR_Sensor">
+    <xacro:include filename="robot_control_with_sensor.xacro" />
+
+    <link name="world"/>
+
+
+</robot>
+
+
+
+
+
+
+
+
+
+
+
+
+

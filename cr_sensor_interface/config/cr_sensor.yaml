@@ -1,0 +1,16 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    voltageRatios_broadcaster:
+      type: "force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster"
+
+voltageRatios_broadcaster:
+  ros__parameters:
+    interface_names.force.x: voltageRatios_sensor/voltageRatio0
+    interface_names.force.y: voltageRatios_sensor/voltageRatio1
+    interface_names.force.z: voltageRatios_sensor/voltageRatio2
+    interface_names.torque.x: voltageRatios_sensor/voltageRatio3
+    frame_id: tool_link
+
+

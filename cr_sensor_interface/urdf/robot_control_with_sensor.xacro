@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <ros2_control name="ContinuumRobotSensor" type="sensor">
+        <hardware>
+            <plugin>cr_sensor_interface/CrSensorInterface</plugin>
+            <param name="example_param_hw_start_duration_sec">0.0</param>
+            <param name="example_param_hw_stop_duration_sec">3.0</param>
+            <param name="example_param_max_sensor_change">5.0</param>
+        </hardware>
+
+       <sensor name="voltageRatios_sensor">
+        <state_interface name="voltageRatio0"/>
+        <state_interface name="voltageRatio1"/>
+        <state_interface name="voltageRatio2"/>
+        <state_interface name="voltageRatio3"/>
+        <param name="frame_id">tool_link</param>
+        <param name="fx_range">100</param>
+        <param name="fy_range">100</param>
+        <param name="fz_range">100</param>
+        <param name="tx_range">100</param>
+      </sensor>
+    </ros2_control>
+</robot>
