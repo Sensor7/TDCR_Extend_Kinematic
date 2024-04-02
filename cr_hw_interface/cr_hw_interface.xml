@@ -1,0 +1,9 @@
+<library path="cr_hw_interface">
+    <class name="cr_hw_interface/CrHwInterface"
+           type="cr_hw_interface::CrHwInterface"
+           base_class_type="hardware_interface::SystemInterface">
+        <description>
+            Hardware Interface for Tendon Drives on arduino servos.
+        </description>
+    </class>
+</library>

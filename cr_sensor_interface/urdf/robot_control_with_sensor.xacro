@@ -3,21 +3,33 @@
     <ros2_control name="ContinuumRobotSensor" type="sensor">
         <hardware>
             <plugin>cr_sensor_interface/CrSensorInterface</plugin>
-            <param name="example_param_hw_start_duration_sec">0.0</param>
-            <param name="example_param_hw_stop_duration_sec">3.0</param>
-            <param name="example_param_max_sensor_change">5.0</param>
+            <param name="robot1_load_cell1_serialNum">566303</param>
+            <param name="robot1_load_cell2_serialNum">587030</param>
+            <param name="robot2_load_cell1_serialNum">587030</param>
+            <param name="robot2_load_cell2_serialNum">580129</param>
         </hardware>
 
-       <sensor name="voltageRatios_sensor">
-        <state_interface name="voltageRatio0"/>
-        <state_interface name="voltageRatio1"/>
-        <state_interface name="voltageRatio2"/>
-        <state_interface name="voltageRatio3"/>
+       <sensor name="voltageRatios_sensor1">
+        <state_interface name="voltageRatio10"/>
+        <state_interface name="voltageRatio11"/>
+        <state_interface name="voltageRatio12"/>
+        <state_interface name="voltageRatio13"/>
         <param name="frame_id">tool_link</param>
-        <param name="fx_range">100</param>
-        <param name="fy_range">100</param>
-        <param name="fz_range">100</param>
-        <param name="tx_range">100</param>
+        <param name="voltageRatio10_range">1000</param>
+        <param name="voltageRatio11_range">1000</param>
+        <param name="voltageRatio12_range">1000</param>
+        <param name="voltageRatio13_range">1000</param>
+      </sensor>
+       <sensor name="voltageRatios_sensor2">
+        <state_interface name="voltageRatio20"/>
+        <state_interface name="voltageRatio21"/>
+        <state_interface name="voltageRatio22"/>
+        <state_interface name="voltageRatio23"/>
+        <param name="frame_id">tool_link</param>
+        <param name="voltageRatio20_range">1000</param>
+        <param name="voltageRatio21_range">1000</param>
+        <param name="voltageRatio22_range">1000</param>
+        <param name="voltageRatio23_range">1000</param>
       </sensor>
     </ros2_control>
 </robot>

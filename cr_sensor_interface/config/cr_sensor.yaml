@@ -7,10 +7,10 @@ controller_manager:
 
 voltageRatios_broadcaster:
   ros__parameters:
-    interface_names.force.x: voltageRatios_sensor/voltageRatio0
-    interface_names.force.y: voltageRatios_sensor/voltageRatio1
-    interface_names.force.z: voltageRatios_sensor/voltageRatio2
-    interface_names.torque.x: voltageRatios_sensor/voltageRatio3
+    interface_names.force.x: voltageRatios_sensor/voltageRatio01
+    interface_names.force.y: voltageRatios_sensor/voltageRatio01
+    interface_names.force.z: voltageRatios_sensor/voltageRatio02
+    interface_names.torque.x: voltageRatios_sensor/voltageRatio03
     frame_id: tool_link
 
 

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <ros2_control name="ContinuumRobotControl" type="system">
+        <hardware>
+            <plugin>cr_hw_interface/CrHwInterface</plugin>
+            <param name="device">/dev/ttyACM0</param>
+            <param name="baud_rate">57600</param>
+            <param name="timeout_ms">1000</param>
+
+            <param name="xz1_servo_name">xz1_servo</param>
+            <param name="yz1_servo_name">yz1_servo</param>
+            <param name="xz2_servo_name">xz2_servo</param>
+            <param name="yz2_servo_name">yz2_servo</param>
+
+            <param name="spacer_distance">0.01625</param>
+            <param name="dist_to_tendon">0.0035</param>
+            <param name="spacer_num">8</param>
+            <param name="segment_num">2</param>
+            <param name="tendondrum_rad">0.006</param>
+
+            <param name="sensorjointx_name">sensorjointx</param>
+            <param name="sensorjointy_name">sensorjointy</param>
+            <param name="sensorjointz_name">sensorjointz</param>
+            <param name="sensorjoint_beta_name">sensorjoint_beta</param>
+            <param name="sensorjoint_alpha_name">sensorjoint_alpha</param>
+            <param name="sensorjoint_gamma_name">sensorjoint_gamma</param>
+
+            <param name="disk1_4jointx_name">disk1_4jointx</param>
+            <param name="disk1_4jointy_name">disk1_4jointy</param>
+            <param name="disk1_4jointz_name">disk1_4jointz</param>
+            <param name="disk1_4joint_beta_name">disk1_4joint_beta</param>
+            <param name="disk1_4joint_alpha_name">disk1_4joint_alpha</param>
+            <param name="disk1_4joint_gamma_name">disk1_4joint_gamma</param>
+            <param name="disk1_8jointx_name">disk1_8jointx</param>
+            <param name="disk1_8jointy_name">disk1_8jointy</param>
+            <param name="disk1_8jointz_name">disk1_8jointz</param>
+            <param name="disk1_8joint_beta_name">disk1_8joint_beta</param>
+            <param name="disk1_8joint_alpha_name">disk1_8joint_alpha</param>
+            <param name="disk1_8joint_gamma_name">disk1_8joint_gamma</param>
+            <param name="disk2_4jointx_name">disk2_4jointx</param>
+            <param name="disk2_4jointy_name">disk2_4jointy</param>
+            <param name="disk2_4jointz_name">disk2_4jointz</param>
+            <param name="disk2_4joint_beta_name">disk2_4joint_beta</param>
+            <param name="disk2_4joint_alpha_name">disk2_4joint_alpha</param>
+            <param name="disk2_4joint_gamma_name">disk2_4joint_gamma</param>
+
+            <param name="spacer1_1x_name">spacer1_1x</param>
+            <param name="spacer1_1y_name">spacer1_1y</param>
+            <param name="spacer1_1z_name">spacer1_1z</param>
+            <param name="spacer1_2x_name">spacer1_2x</param>
+            <param name="spacer1_2y_name">spacer1_2y</param>
+            <param name="spacer1_2z_name">spacer1_2z</param>
+            <param name="spacer1_3x_name">spacer1_3x</param>
+            <param name="spacer1_3y_name">spacer1_3y</param>
+            <param name="spacer1_3z_name">spacer1_3z</param>
+            <param name="spacer1_4x_name">spacer1_4x</param>
+            <param name="spacer1_4y_name">spacer1_4y</param>
+            <param name="spacer1_4z_name">spacer1_4z</param>
+            <param name="spacer1_5x_name">spacer1_5x</param>
+            <param name="spacer1_5y_name">spacer1_5y</param>
+            <param name="spacer1_5z_name">spacer1_5z</param>
+            <param name="spacer1_6x_name">spacer1_6x</param>
+            <param name="spacer1_6y_name">spacer1_6y</param>
+            <param name="spacer1_6z_name">spacer1_6z</param>
+            <param name="spacer1_7x_name">spacer1_7x</param>
+            <param name="spacer1_7y_name">spacer1_7y</param>
+            <param name="spacer1_7z_name">spacer1_7z</param>
+            <param name="spacer1_8x_name">spacer1_8x</param>
+            <param name="spacer1_8y_name">spacer1_8y</param>
+            <param name="spacer1_8z_name">spacer1_8z</param>
+
+            <param name="spacer2_1x_name">spacer2_1x</param>
+            <param name="spacer2_1y_name">spacer2_1y</param>
+            <param name="spacer2_1z_name">spacer2_1z</param>
+            <param name="spacer2_2x_name">spacer2_2x</param>
+            <param name="spacer2_2y_name">spacer2_2y</param>
+            <param name="spacer2_2z_name">spacer2_2z</param>
+            <param name="spacer2_3x_name">spacer2_3x</param>
+            <param name="spacer2_3y_name">spacer2_3y</param>
+            <param name="spacer2_3z_name">spacer2_3z</param>
+            <param name="spacer2_4x_name">spacer2_4x</param>
+            <param name="spacer2_4y_name">spacer2_4y</param>
+            <param name="spacer2_4z_name">spacer2_4z</param>
+            <param name="spacer2_5x_name">spacer2_5x</param>
+            <param name="spacer2_5y_name">spacer2_5y</param>
+            <param name="spacer2_5z_name">spacer2_5z</param>
+            <param name="spacer2_6x_name">spacer2_6x</param>
+            <param name="spacer2_6y_name">spacer2_6y</param>
+            <param name="spacer2_6z_name">spacer2_6z</param>
+            <param name="spacer2_7x_name">spacer2_7x</param>
+            <param name="spacer2_7y_name">spacer2_7y</param>
+            <param name="spacer2_7z_name">spacer2_7z</param>
+        </hardware>
+
+        <joint name="xz1_servo">
+            <command_interface name="position">
+                <param name="min">-135</param>
+                <param name="max">135</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="yz1_servo">
+            <command_interface name="position">
+                <param name="min">-135</param>
+                <param name="max">135</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="xz2_servo">
+            <command_interface name="position">
+                <param name="min">-135</param>
+                <param name="max">135</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="yz2_servo">
+            <command_interface name="position">
+                <param name="min">-135</param>
+                <param name="max">135</param>
+            </command_interface>
+            <state_interface name="position"/>
+        </joint>
+
+    </ros2_control>
+</robot>

@@ -1,0 +1,216 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Tendon_drive_CR">
+
+    <xacro:include filename="robot_control.xacro" />
+    <xacro:include filename="robot_base.xacro" />
+
+    <link name="world"/>
+
+    <joint name="base_mount" type="fixed">
+        <origin xyz="0 0 0.17" rpy="0 0 0"/>
+        <parent link="world"/>
+        <child link="base"/>
+    </joint>
+
+    <link name="base">
+        <xacro:robot_base name="robot_base"/>
+    </link>
+
+    <joint name="xz1_joint" type="fixed">
+        <origin xyz="0.005 -0.03 -0.07" rpy="0 0 ${pi/2}"/>
+        <parent link="base"/>
+        <child link="servoxz1_mount"/>
+    </joint>
+    <joint name="yz1_joint" type="fixed">
+        <origin xyz="0.03 0.005 -0.07" rpy="0 0 ${pi}"/>
+        <parent link="base"/>
+        <child link="servoyz1_mount"/>
+    </joint>
+    <joint name="xz2_joint" type="fixed">
+        <origin xyz="-0.005 0.03 -0.07" rpy="0 0 ${-pi/2}"/>
+        <parent link="base"/>
+        <child link="servoxz2_mount"/>
+    </joint>
+    <joint name="yz2_joint" type="fixed">
+        <origin xyz="-0.03 -0.005 -0.07" rpy="0 0 0"/>
+        <parent link="base"/>
+        <child link="servoyz2_mount"/>
+    </joint>
+
+    <xacro:include filename="servo_description.xacro" />
+
+    <xacro:servo_mount name="servoxz1_mount" h="0.02" w="0.04" d="0.04"/>
+    <xacro:servo_mount name="servoyz1_mount" h="0.02" w="0.04" d="0.04"/>
+    <xacro:servo_mount name="servoxz2_mount" h="0.02" w="0.04" d="0.04"/>
+    <xacro:servo_mount name="servoyz2_mount" h="0.02" w="0.04" d="0.04"/>
+
+    <xacro:servo_joint name="xz1_servo" parent="servoxz1_mount" child="tendondrum_xz1" flip="1"/>
+    <xacro:servo_joint name="yz1_servo" parent="servoyz1_mount" child="tendondrum_yz1" flip="1"/>
+    <xacro:servo_joint name="xz2_servo" parent="servoxz2_mount" child="tendondrum_xz2" flip="-1"/>
+    <xacro:servo_joint name="yz2_servo" parent="servoyz2_mount" child="tendondrum_yz2" flip="-1"/>
+
+
+    <xacro:include filename="tdr_backbone.xacro"/>
+
+    <xacro:section num="1_1"/>
+    <xacro:section num="1_2"/>
+    <xacro:section num="1_3"/>
+    <xacro:section num="1_4"/>
+    <xacro:section num="1_5"/>
+    <xacro:section num="1_6"/>
+    <xacro:section num="1_7"/>
+    <xacro:section num="1_8"/>
+    <xacro:section num="2_1" color="0.1 0.1 0.1 1.0"/>
+    <xacro:section num="2_2"/>
+    <xacro:section num="2_3"/>
+    <xacro:section num="2_4"/>
+    <xacro:section num="2_5"/>
+    <xacro:section num="2_6"/>
+    <xacro:section num="2_7"/>
+
+    <xacro:spacer prev="base" current="1_1" />
+    <xacro:spacer prev="section1_1z" current="1_2" />
+    <xacro:spacer prev="section1_2z" current="1_3" />
+    <xacro:spacer prev="section1_3z" current="1_4" />
+    <xacro:spacer prev="section1_4z" current="1_5" />
+    <xacro:spacer prev="section1_5z" current="1_6" />
+    <xacro:spacer prev="section1_6z" current="1_7" />
+    <xacro:spacer prev="section1_7z" current="1_8" />
+    <xacro:spacer prev="section1_8z" current="2_1" />
+    <xacro:spacer prev="section2_1z" current="2_2" />
+    <xacro:spacer prev="section2_2z" current="2_3" />
+    <xacro:spacer prev="section2_3z" current="2_4" />
+    <xacro:spacer prev="section2_4z" current="2_5" />
+    <xacro:spacer prev="section2_5z" current="2_6" />
+    <xacro:spacer prev="section2_6z" current="2_7" />
+
+
+
+
+    <xacro:joint6dof prev="base" name="sensorjoint" next="sensor"/>
+
+    <link name="sensor" >
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi}"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/EndSpacerModul_PCB_v0_13_m.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <xacro:joint6dof prev="base" name="disk1_4joint" next="disk1_4"/>
+
+    <link name="disk1_4" >
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Spacer_V8_Sensor_m.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <xacro:joint6dof prev="base" name="disk1_8joint" next="disk1_8"/>
+
+    <link name="disk1_8" >
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Spacer_V8_Sensor_m.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <xacro:joint6dof prev="base" name="disk2_4joint" next="disk2_4"/>
+
+    <link name="disk2_4" >
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Spacer_V8_Sensor_m.stl"/>
+            </geometry>
+        </visual>
+    </link>
+
+
+    <link name="tendondrum_xz1">
+        <visual>
+            <origin xyz="0 0 0" rpy="3.14 -1.57 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Servo_Pulley_V5_m.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.2 0.2 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length = "0.03" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="tendondrum_yz1">
+        <visual>
+            <origin xyz="0 0 0" rpy="${pi} -${pi/2} 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Servo_Pulley_V5_m.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.2 0.2 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length = "0.03" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="tendondrum_xz2">
+        <visual>
+            <origin xyz="0 0 0" rpy="3.14 -1.57 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Servo_Pulley_V5_m.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.2 0.2 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length = "0.03" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="tendondrum_yz2">
+        <visual>
+            <origin xyz="0 0 0" rpy="3.14 -1.57 0"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Servo_Pulley_V5_m.stl"/>
+            </geometry>
+            <material name="blue">
+                <color rgba="0.2 0.2 1 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length = "0.03" />
+            </geometry>
+        </collision>
+    </link>
+
+</robot>
+
+
+
+
+
+
+
+
+
+
+
+
+

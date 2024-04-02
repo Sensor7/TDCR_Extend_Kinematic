@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="leg" params="x y">
+        <visual>
+            <origin xyz="${x} ${y} -0.14" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.006" length="0.06"/>
+            </geometry>
+            <material name="t_grey">
+                <color rgba="0.8 0.8 0.8 1"/>
+            </material>
+        </visual>
+    </xacro:macro>
+
+    <xacro:macro name= "robot_base" params="name">
+        <visual>
+            <origin xyz="0 0 -0.005" rpy="1.57 0 ${pi/2}"/>
+            <geometry>
+                <mesh filename="package://cr_hw_interface/meshes/Holder_V5_LED_m.stl"/>
+            </geometry>
+            <material name="t_grey">
+                <color rgba="0.8 0.8 0.8 1"/>
+            </material>
+        </visual>
+        <visual>
+            <origin xyz="0 0 -0.11" rpy="0 0 0.785"/>
+            <geometry>
+                <box size="0.23 0.23 0.006" />
+            </geometry>
+            <material name="t_grey">
+                <color rgba="0.8 0.8 0.8 1"/>
+            </material>
+        </visual>
+        <xacro:leg x="0.15" y="0"/>
+        <xacro:leg x="0" y="-0.15"/>
+        <xacro:leg x="0" y="0.15"/>
+        <xacro:leg x="-0.15" y="0"/>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.01" />
+            </geometry>
+        </collision>
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,27 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 20  # Hz
+
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+
+    forward_command_controller:
+      type: "forward_command_controller/ForwardCommandController"
+
+forward_command_controller:
+  ros__parameters:
+    joints:
+      - xz1_servo
+      - yz1_servo
+      - xz2_servo
+      - yz2_servo
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+    interface_name: "position"
+    state_publish_rate: 20.0
+    action_monitor_rate: 20.0
+
+    allow_partial_joints_goal: false
+    open_loop_control: true

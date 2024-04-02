@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="section_length" value="0.016"/>
+    <xacro:property name="robot_length" value="0.3"/>
+
+    <xacro:macro name="section" params="num color:='1.0 1.0 1.0 1.0'">
+        <link name="section${num}x">
+            <visual>
+                <origin xyz="0 0 ${section_length/2}" rpy="0 0 0"/>
+                <geometry>
+                    <cylinder radius="0.002" length="${section_length}"/>
+                </geometry>
+                <material name="backbone_color">
+                    <color rgba="0.5 0.5 0.5 1.0"/>
+                </material>
+            </visual>
+        </link>
+        <link name="section${num}y">
+        </link>
+        <link name="section${num}z">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://cr_hw_interface/meshes/Spacer_V8_Sensor_m.stl"/>
+                </geometry>
+                <material name="spacer_color${color}">
+                    <color rgba="${color}"/>
+                </material>
+            </visual>
+        </link>
+    </xacro:macro>
+
+    <xacro:macro name="spacer" params="prev current">
+        <joint name="spacer${current}x" type="revolute">
+            <axis xyz="1 0 0"/>
+            <limit lower="${-pi}" upper="${pi}" velocity="100" effort="100"/>
+            <parent link ="${prev}"/>
+            <child link ="section${current}x"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+        <joint name="spacer${current}y" type="revolute">
+            <axis xyz="0 1 0"/>
+            <limit lower="${-pi}" upper="${pi}" velocity="100" effort="100"/>
+            <parent link ="section${current}x"/>
+            <child link ="section${current}y"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+        <joint name="spacer${current}z" type="prismatic">
+            <axis xyz="0 0 1"/>
+            <limit lower="-${section_length}" upper="0" velocity="100" effort="100"/>
+            <parent link ="section${current}y"/>
+            <child link ="section${current}z"/>
+            <origin xyz="0 0 ${section_length}" rpy="0 0 0"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="joint6dof" params="prev name next">
+        <joint name="${name}x" type="prismatic">
+            <axis xyz="1 0 0"/>
+            <limit lower="-${robot_length}" upper="${robot_length}" velocity="100" effort="100"/>
+            <parent link ="${prev}"/>
+            <child link ="link_${name}x"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+        <link name="link_${name}x"/>
+        <joint name="${name}y" type="prismatic">
+            <axis xyz="0 1 0"/>
+            <limit lower="-${robot_length}" upper="${robot_length}" velocity="100" effort="100"/>
+            <parent link ="link_${name}x"/>
+            <child link ="link_${name}y"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+        <link name="link_${name}y"/>
+        <joint name="${name}z" type="prismatic">
+            <axis xyz="0 0 1"/>
+            <limit lower="-${robot_length}" upper="${robot_length}" velocity="100" effort="100"/>
+            <parent link ="link_${name}y"/>
+            <child link ="link_${name}z"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <link name="link_${name}z"/>
+
+        <joint name="${name}_beta" type="revolute">
+            <axis xyz="0 0 1"/>
+            <limit lower="-${pi}" upper="${pi}" velocity="100" effort="100"/>
+            <parent link ="link_${name}z"/>
+            <child link ="link_${name}_beta"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <link name="link_${name}_beta"/>
+
+        <joint name="${name}_alpha" type="revolute">
+            <axis xyz="0 1 0"/>
+            <limit lower="-${pi}" upper="${pi}" velocity="100" effort="100"/>
+            <parent link ="link_${name}_beta"/>
+            <child link ="link_${name}_alpha"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+
+        <link name="link_${name}_alpha"/>
+
+        <joint name="${name}_gamma" type="revolute">
+            <axis xyz="0 0 1"/>
+            <limit lower="-${pi}" upper="${pi}" velocity="100" effort="100"/>
+            <parent link ="link_${name}_alpha"/>
+            <child link ="${next}"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </joint>
+    </xacro:macro>
+
+</robot>

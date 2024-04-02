@@ -13,7 +13,7 @@
 #include "hardware_interface/types/hardware_interface_status_values.hpp"
 #include "rclcpp/macros.hpp"
 #include "rclcpp/rclcpp.hpp"
-#include <phidget22.h>
+#include <libphidget22/phidget22.h>
 #include <stdio.h>
 
 namespace cr_sensor_interface
@@ -36,28 +36,37 @@ public:
     hardware_interface::return_type read() override;
 
 
+
 private:
   // Dummy
   rclcpp::Logger logger_;
   std::chrono::time_point<std::chrono::system_clock> time_;
-  double hw_start_sec_;
-  double hw_stop_sec_;
-  double hw_sensor_change_;
+  int robot1_load_cell1_serialNum;
+  int robot1_load_cell2_serialNum;
+  int robot2_load_cell1_serialNum;
+  int robot2_load_cell2_serialNum;
   // part for specific sensor data
   // TODO: what kind of data? where I can get the real data? Which data type?
+
 	//Declare your Phidget channels and other variables
-	PhidgetVoltageRatioInputHandle voltageRatioInput0;
-    PhidgetVoltageRatioInputHandle voltageRatioInput1;
-    PhidgetVoltageRatioInputHandle voltageRatioInput2;
-    PhidgetVoltageRatioInputHandle voltageRatioInput3;
-    PhidgetReturnCode res;
+	PhidgetVoltageRatioInputHandle voltageRatioInput10;
+  PhidgetVoltageRatioInputHandle voltageRatioInput11;
+  PhidgetVoltageRatioInputHandle voltageRatioInput12;
+  PhidgetVoltageRatioInputHandle voltageRatioInput13;
+
+	PhidgetVoltageRatioInputHandle voltageRatioInput20;
+  PhidgetVoltageRatioInputHandle voltageRatioInput21;
+  PhidgetVoltageRatioInputHandle voltageRatioInput22;
+  PhidgetVoltageRatioInputHandle voltageRatioInput23;
+  PhidgetReturnCode res;
 
   // part for specific sensor data
 
 
 
   // Store the command for the simulated sensor
-  std::vector<double> hw_sensor_states_;
+  std::vector<double> hw_sensor_states0_;
+  std::vector<double> hw_sensor_states1_;
   
 };
 
